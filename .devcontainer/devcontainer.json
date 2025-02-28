@@ -1,0 +1,44 @@
+// For format details, see https://aka.ms/devcontainer.json. 
+// For config options, see the README at: https://github.com/microsoft/azuresql-devcontainers/tree/main/src/python
+{
+	"name": "Python 3",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-mssql.mssql",
+				"github.copilot",
+				"github.codespaces",
+				"streetsidesoftware.code-spell-checker",
+				"charliermarsh.ruff",
+				"zhuangtongfa.material-theme",
+				"PKief.material-icon-theme",
+				"mutantdino.resourcemonitor",
+				"ms-python.mypy-type-checker",
+				"eamodio.gitlens",
+				"esbenp.prettier-vscode",
+				"tamasfe.even-better-toml",
+				"vscode-icons-team.vscode-icons"
+			]
+		}
+	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [],
+	// Post create commands to run after the container is created.
+	"postCreateCommand": "bash .devcontainer/postCreateCommand.sh",
+	// Post start commands to run after the container is started.
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"version": "latest"
+		}
+	}
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}

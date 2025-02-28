@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PYTHONPATH=/workspace
+      - ENVIRONMENT=local
+      - DB_HOST=db
+
+    volumes:
+      - ..:/workspace:cached
+      - space_data:/home
+
+    command: sleep infinity
+    networks:
+      - devcontainer_network
+
+volumes:
+  space_data:
+
+
+networks:
+  devcontainer_network:
