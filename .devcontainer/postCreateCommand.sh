@@ -8,6 +8,7 @@ sudo chown -R vscode /workspace
 # pip install -r requirements/development.txt
 
 # playwright
+
 pip install playwright
 sudo playwright install-deps
 playwright install

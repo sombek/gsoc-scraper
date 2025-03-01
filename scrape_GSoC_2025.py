@@ -25,10 +25,12 @@ async def fetch_all_orgs():
             # Extract organization links
             org_links = soup.find_all("a", class_="content")
             for link in org_links:
-                name = link.text.strip()
+                name = link.find("div", class_="name").text.strip()
                 href = link["href"]
                 full_url = f"https://summerofcode.withgoogle.com{href}"
-                organizations.add((name, full_url))
+                logo = link.find("img")["src"]
+                short_desc = link.find("div", class_="short-description").text.strip()
+                organizations.add((name, full_url, logo, short_desc))
 
             # Find and handle pagination
             next_buttons = await page.locator("button[aria-label='Next page']").all()
@@ -58,7 +60,7 @@ async def fetch_all_orgs():
     return sorted(organizations, key=lambda org: org[0].lower())
 
 
-async def enrich_org(name, url, browser):
+async def enrich_org(name, url, logo, short_desc, browser):
     """Scrape technologies, topics, and View Ideas link for a single organization."""
     page = await browser.new_page()
     await page.goto(url, timeout=60000)
@@ -73,8 +75,7 @@ async def enrich_org(name, url, browser):
     if technologies_section:
         tech_content = technologies_section.find("div", class_="tech__content")
         if tech_content:
-            technologies = [tech.strip()
-                            for tech in tech_content.text.split(",")]
+            technologies = [tech.strip() for tech in tech_content.text.split(",")]
 
     # Extract Topics
     topics_section = soup.find("div", class_="tag topics")
@@ -82,8 +83,7 @@ async def enrich_org(name, url, browser):
     if topics_section:
         topics_content = topics_section.find("div", class_="topics__content")
         if topics_content:
-            topics = [topic.strip()
-                      for topic in topics_content.text.split(",")]
+            topics = [topic.strip() for topic in topics_content.text.split(",")]
 
     # Extract "View ideas list" link
     ideas_button = soup.find("a", attrs={"color": "primary"})
@@ -91,7 +91,7 @@ async def enrich_org(name, url, browser):
 
     await page.close()
 
-    return (name, url, technologies, topics, ideas_link)
+    return (name, url, technologies, topics, ideas_link, logo, short_desc)
 
 
 async def scrape_gsoc_data():
@@ -104,13 +104,17 @@ async def scrape_gsoc_data():
         # Use tqdm for progress tracking
         enriched_orgs = []
         tasks = []
-        for name, full_url in orgs:
-            tasks.append(enrich_org(name, full_url, browser))
+        for org in orgs:
+            tasks.append(enrich_org(org[0], org[1], org[2], org[3], browser))
 
         # Gather all results asynchronously
-        batch_size = 30  # Limit the number of concurrent tasks using tqdm
-        for i in tqdm(range(0, len(tasks), batch_size), desc="Scraping Organizations", unit="org"):
-            batch = tasks[i:i + batch_size]
+        batch_size = 5  # Limit the number of concurrent tasks using tqdm
+        for i in tqdm(
+            range(0, len(tasks), batch_size),
+            desc="Scraping Organizations",
+            unit=f"orgs ({batch_size} at a time)",
+        ):
+            batch = tasks[i : i + batch_size]
             results = await asyncio.gather(*batch)
             enriched_orgs.extend(results)
 
@@ -120,7 +124,16 @@ async def scrape_gsoc_data():
     with open("gsoc_2025_organizations.csv", "w", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(
-            ["Organization", "URL", "Technologies", "Topics", "Ideas Link"])
+            [
+                "Organization",
+                "URL",
+                "Technologies",
+                "Topics",
+                "Ideas Link",
+                "Logo",
+                "Short Description",
+            ]
+        )
         writer.writerows(enriched_orgs)
 
     print("\n✅ Data scraping complete! Results saved to gsoc_2025_organizations.csv")

@@ -1,0 +1,186 @@
+52°North Spatial Information Research GmbH  Innovative ideas & technologies in geoinformatics,https://summerofcode.withgoogle.com/programs/2025/organizations/52north-spatial-information-research-gmbh,https://52north.org/outreach-dissemination/google-summer-of-code/project-ideas/,Title: Project Ideas for Google Summer of Code @ 52°North
+
+URL Source: https://52north.org/outreach-dissemination/google-summer-of-code/project-ideas/
+
+Markdown Content:
+GSoC 2025
+---------
+
+### Previous Projects
+
+Check out our [Blog Post Series](https://blog.52north.org/category/gsoc/) for more information on previous projects!
+
+1\. KomMonitor
+--------------
+
+#### **Angular migration of the KomMonitor Web Client**
+
+### **Explanation**
+
+KomMonitor is a web based tool that combines methods of GIS (Geographic information System) and statistical data and helps in providing a simpler and easier way to monitor geo-spatial data. Many municipalities have established KomMonitor to address a wide range of challenges in fields such as urban planning, environmental management, and disaster response. The current version of the [KomMonitor Web Client](https://github.com/KomMonitor/web-client) has been developed using AngularJS, which has served as a reliable foundation for its functionalities. However, AngularJS has been deprecated for some years now. Therefore, relying on the current code base has several potential drawbacks associated with using AngularJS, such as compatibility issues, limited community support, reduced performance, and version support. To overcome these challenges and take KomMonitor to the next level, it is necessary to adopt the KomMonitor Web Client to the more modern and widely-supported framework Angular. As part of [GSoC 2023](https://blog.52north.org/2023/09/26/kommonitor-final-blogpost/), essential work has been done by developing a general approach for the Angular migration. The Web Client has been restructured so that it can be deployed as a hybrid web application, which runs both legacy AngularJS components and migrated or new Angular components. This year, the project aims to continue the migration tasks. Hence, the goal of this project is to reimplement several selected components of the KomMonitor Web Client by using the Angular framework.
+
+### **Expected Results**
+
+As a result of the project, it is expected that several selected components of the KomMonitor Web Client will have been reimplemented with the Angular framework. The resulting UI of the reimplemented components should be as close as possible to the previous design to preserve the current look&feel. As an additional requirement, the reimplementation should take into account best practices and common design patterns in Angular. This results in also restructuring some of the existing components rather than simply transferring a component from AngularJS to Angular. Finally, the hybrid Web Client, including legacy AngularJS components and new Angular components side-by-side, should run properly without any bugs.
+
+### **Code Challenge**
+
+Migrate the _kommonitorToastHelperService_ of the KomMonitor Web Client to Angular and make use of it in a new Angular component as part of the Web Client. Follow the steps below:
+
+1.  Create a fork of [https://github.com/KomMonitor/web-client](https://github.com/KomMonitor/web-client) and checkout the [GSoC2025 Branch](https://github.com/KomMonitor/web-client/tree/GSoC2025)
+2.  Create a new Angular service as part of the KomMonitor Web Client that provides the same functionality as the existing AngularJS version of the _kommonitorToastHelperService_
+3.  Create a new Angular component that makes use of the previously implemented _kommonitorToastHelperService_. Take into account these requirements:
+    1.  The component should be opened and closed by clicking on a button on the left sidebar.
+    2.  The component should include a text area and a button.
+    3.  The required functionality should be to display a message as toast on the screen by filling the text area and clicking on the button. For this purpose the _kommonitorToastHelperService_ should be used.
+4.  Push the code to your fork at GitHub
+5.  Link to the fork within your official GSoC application. Your GSoC application should also include a description of which components you plan to migrate during GSoC as well as an estimation of time required for implementing it.
+
+**![Image 1](https://52north.org/wp-content/uploads/2025/02/KMCodeChallenge.jpg)**
+
+### **Community and Code License**
+
+Apache Software License, Version 2
+
+### **Mentors**
+
+Sebastian Drost (s.drost @52north.org), Christoph Wagner (c.wagner @52north.org)
+
+### **Project Duration**
+
+The duration of the project is estimated at **175** hours. An extension is possible.
+
+### **Chat**
+
+TBD
+
+2\. LLM and GeoData
+-------------------
+
+### Explanation
+
+During 52°North’s Student Innovation Challenge in 2024, a first open-source implementation connecting spatial data and Large Language Models (LLM) was developed.
+
+The ambition was to address the pain points of searchability in Research and Spatial Data Infrastructures (RDI/SDI). Search functionality in such systems is typically limited to a metadata-based approach. However, geospatial data – whether vector or raster based – provides a wealth of interesting data that can currently only be identified by looking at the individual dataset. The challenge of the 2024 Student Innovation Prize was to develop a concept and a possible implementation that allows searching within datasets of/and RDI/SDI, e.g. on the attribute level. There are many interesting aspects related to this challenge: technical solutions, taxonomies and semantics, language/i18n, searching in raster data, and many more such as LLMs.
+
+The available Proof of Concept (PoC) features a prompt that makes it easier to search and access to spatial data. More user stories are documented in the Innovation Prize project backlog on GitHub: [https://github.com/52North/innovation-prize](https://github.com/52North/innovation-prize).
+
+### Expected Results
+
+The PoC should be hardened and developed beyond its current state. For example, less verbose prompts are needed as more sophisticated LLMs emerge. Also, improved software frameworks may provide a better development experience. Various extensions are possible and a selection should be outlined in the proposal. Additional user stories from the backlog in the github project (see above) could be addressed. Another interesting extension could also entail a federated architecture. Furthermore, the use of different LLMs is also a possible option for further development.
+
+### Code Challenge
+
+Set up the entire working environment based on the existing open source code
+
+[https://github.com/52North/innovation-prize/tree/2024](https://github.com/52North/innovation-prize/tree/2024)
+
+and add two more data sets. Share the code and the deployed system.
+
+### Community and Code License
+
+TBChecked: Apache Software License, Version 2
+
+### Mentors
+
+Henning Bredel (h.bredel @52north.org), Simeon Wetzel
+
+### Project duration
+
+The duration of the project is estimated at **175** hours. An extension is possible.
+
+### Explanation
+
+The open-source 52°North Weather Routing Tool ([WRT](https://github.com/52North/WeatherRoutingTool)) was initially developed during the [MariData project](https://maridata.org/). It provides means to find an optimal ship route that minimizes fuel consumption under varying weather conditions. In the optimization process, several constraints can be integrated, e.g. water depth and traffic separation zones. Currently, there are two algorithms available: an isofuel algorithm and a genetic algorithm. Details of the MariData project and example applications of the Weather Routing Tool can be found in the following publication: [https://proceedings.open.tudelft.nl/imdc24/article/view/875](https://proceedings.open.tudelft.nl/imdc24/article/view/875).
+
+### Expected Results
+
+The Weather Routing Tool should be extended by new features and its robustness should be improved. There are three major directions of possible developments:
+
+1.  Ship speed optimization  
+    Currently, only the geometry of the route is optimized while the ship speed is assumed to be constant. To cover a broader range of real-world use cases, the Weather Routing Tool should provide the option to optimize ship speed. This could be along a fixed route or simultaneous with the route geometry.
+2.  Genetic algorithm  
+    The implementation of the genetic algorithm is still very basic. Possible improvements include the generation of the initial population and the strategies for crossover and mutation. Moreover, a multi-objective optimization could be implemented.
+3.  General consumption model  
+    An important aspect of the Weather Routing Tool is the underlying (fuel) consumption model. The best results can generally be obtained by using a consumption model which is developed specifically for a ship, e.g. based on hydrodynamic modeling or machine learning models. However, developing such specific models is cumbersome and restricts the applicability of the tool. Thus, having a general consumption model which only requires a few characteristics of a ship (e.g. type of vessel, length, breadth, displacement) would be a great improvement. The model should have reasonable accuracy. As this feature includes research aspects and can only be successfully developed with the necessary background knowledge, interested candidates have to provide a clear plan of their approach.
+
+The features can be implemented in different ways. How they are implemented is up to the candidate and might include deterministic, machine learning or AI methods.
+
+### Code Challenge
+
+New ship class:
+
+*   Implement a new [ship class](https://github.com/52North/WeatherRoutingTool/blob/main/WeatherRoutingTool/ship/ship.py)
+    *   It should inherit from the [Boat base class](https://github.com/52North/WeatherRoutingTool/blob/main/WeatherRoutingTool/ship/ship.py#L25)
+    *   The _get\_ship\_parameters_ method has to be implemented; it should return a “synthetic” fuel rate which depends on at least one environmental parameter (e.g. wave height)
+    *   Make sure the fuel rates (kg per second) are within a reasonable value range. Besides the weather conditions, typical fuel rates also depend on the ship size, type (e.g. container ship, tanker, fishing vessel) and speed.
+    *   The choice of the considered environmental parameters and the type of the function is free
+    *   You can take the [ConstantFuelBoat class](https://github.com/52North/WeatherRoutingTool/blob/main/WeatherRoutingTool/ship/ship.py#L42) as an example
+*   Prepare weather conditions
+    *   Options:
+        *   Create your own synthetic weather conditions
+        *   Download actual historical or forecast data from public portals (Copernicus, NOAA, …). You can use the Python package [maridatadownloader](https://github.com/52North/maridatadownloader) directly or indirectly by setting “_DATA\_MODE_” to “_automatic_“.
+*   Run the Weather Routing Tool with your new ship class and a route of your free choice
+    *   Hint: because the Python package mariPower is not publicly available, you need to comment or delete the corresponding lines in ship.py.
+    *   Configuration:
+        *   Set “_ALGORITHM\_TYPE_” to “_isofuel_”
+*   Provide the expected results for review
+    *   Mandatory:
+        *   Final route as GeoJSON file
+        *   Python code of new ship class
+    *   Optional:
+        *   Log file (_info.log_)
+        *   Snapshots of routing steps (_WRT\_FIGURE\_PATH_)
+        *   Used weather data
+
+### Community and Code License
+
+MIT License
+
+### Mentors
+
+Martin Pontius (m.pontius @52north.org), Katharina Demmich (k.demmich @52north.org)
+
+### Project Duration
+
+The duration of the project is estimated at **175** hours. An extension is possible.
+
+TBD
+
+*   Cloud Native OGC SensorThings API 2
+*   enviroCar
+
+4\. Your Idea
+-------------
+
+We are also open to your own ideas for developing open source software that addresses 52°North’s software or fits within the scope of 52°North. Before writing a detailed proposal, we strongly recommend that you contact our org-admin with a project pitch (~1 page) that addresses at least the following points
+
+*   Project name:
+*   Reference to existing open source solution (if any):
+*   Explanation of the software’s scope/purpose/context:
+*   Expected results of the proposed project:
+*   Community and Code License in use/planned:
+*   Mentor candidates (if any):
+,### Summary of Project Ideas for Google Summer of Code @ 52°North
+
+- **Previous Projects Overview**
+  - Acknowledges the past projects and encourages readers to refer to the blog for insights into earlier GSoC initiatives.
+
+- **KomMonitor: Angular Migration**
+  - **Explanation**: Focuses on migrating the KomMonitor Web Client from AngularJS to Angular to address deprecation issues and enhance functionality.
+  - **Expected Results**: Reimplementation of components to align with the new Angular framework while preserving the UI design and improving performance.
+  - **Code Challenge**: Involves migrating the `kommonitorToastHelperService` to Angular, creating a new component that uses this service, and documenting the migration plans.
+
+- **LLM and GeoData**
+  - **Explanation**: Builds on a previous implementation connecting spatial data with Large Language Models (LLMs) to improve searchability in spatial data infrastructures.
+  - **Expected Results**: Hardening and enhancing the proof of concept, including creating user stories and potentially implementing a federated architecture with various LLMs.
+  - **Code Challenge**: Set up the existing code environment and add two more datasets for testing and deployment.
+
+- **Weather Routing Tool**
+  - **Explanation**: Discusses the 52°North Weather Routing Tool's purpose to optimize ship routes for fuel consumption, currently powered by various algorithms.
+  - **Expected Results**: Introduction of features such as ship speed optimization, improving genetic algorithms, and developing a general consumption model for ships.
+  - **Code Challenge**: Involves creating a new ship class that inherits from existing code, implementing a synthetic fuel rate based on environmental parameters, and preparing weather conditions for testing.
+
+- **Your Idea**
+  - **Open Invitation**: 52°North welcomes proposals for original open-source software projects related to its mission.
+  - **Proposal Guidelines**: Potential candidates are advised to present a project pitch covering the project name, scope, expected outcomes, licensing, and potential mentors before proceeding with detailed proposals.
