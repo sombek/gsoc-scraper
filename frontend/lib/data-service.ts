@@ -19,6 +19,15 @@ export const dataService = {
     organizations.forEach((org) => {
       delete org.jina_response;
       org.id = org.gsoc_url.split("/").pop() as string;
+      // generate id for project
+      org.projects.forEach((project) => {
+        if (!project.project_name) {
+          console.log(project);
+          return;
+        }
+
+        project.id = project.project_name.split(" ").join("-").toLowerCase();
+      });
     });
     return organizations as Organization[];
   },
@@ -36,6 +45,16 @@ export const dataService = {
     organizations.forEach((org) => {
       delete org.jina_response;
       org.id = org.gsoc_url.split("/").pop() as string;
+      // generate id for project
+      // console.log(org.projects);
+
+      org.projects.forEach((project) => {
+        if (!project.project_name) {
+          console.log(project);
+          return;
+        }
+        project.id = project.project_name.split(" ").join("-").toLowerCase();
+      });
     });
     return organizations.find((org) => org.id === id) as Organization;
   },

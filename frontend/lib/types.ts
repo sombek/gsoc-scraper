@@ -1,4 +1,5 @@
 export type OrganizationProject = {
+  id: string
   project_name: string
   summary: string
   difficulty: string
