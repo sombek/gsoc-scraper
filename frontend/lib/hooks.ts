@@ -21,11 +21,11 @@ export const useFavorites = () => {
     }
   }, [])
 
-  const toggleFavorite = (projectId: string) => {
-    if (isInFavorites(projectId)) {
-      removeFromFavorites(projectId)
+  const toggleFavorite = (projectId: string,orgName:string) => {
+    if (isInFavorites(projectId+"-"+orgName)) {
+      removeFromFavorites(projectId+"-"+orgName)
     } else {
-      addToFavorites(projectId)
+      addToFavorites(projectId+"-"+orgName)
     }
 
     setFavorites(getFavorites())

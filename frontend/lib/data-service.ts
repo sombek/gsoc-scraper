@@ -28,7 +28,14 @@ export const dataService = {
 
         project.id = project.project_name.split(" ").join("-").toLowerCase();
       });
+      organizations.forEach((org) => {
+        org.projects = org.projects.filter(
+          (project, index, self) =>
+            index === self.findIndex((p) => p.id === project.id)
+        );
+      });
     });
+
     return organizations as Organization[];
   },
 
@@ -55,6 +62,11 @@ export const dataService = {
         }
         project.id = project.project_name.split(" ").join("-").toLowerCase();
       });
+
+      org.projects = org.projects.filter(
+        (project, index, self) =>
+          index === self.findIndex((p) => p.id === project.id)
+      );
     });
     return organizations.find((org) => org.id === id) as Organization;
   },
