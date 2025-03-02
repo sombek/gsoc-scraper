@@ -96,7 +96,7 @@ export function AllProjects({ organizations, filters }: AllProjectsProps) {
   }, [organizations, filters, favorites]);
 
   return (
-    <div className="h-[600px] w-full">
+    <div className="h-[800px] w-full">
       <VirtualGrid
         items={filteredProjects}
         renderItem={(project) => (

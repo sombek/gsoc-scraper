@@ -115,12 +115,9 @@ export function ClientOrganizationPage({
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {organization.projects.map((project) => (
           <ProjectCard
-            key={project.project_name}
-            project={{
-              ...project,
-              id: `${organization.name}-${project.project_name}`,
-            }}
-            organizationId={organization.name}
+            key={project.id}
+            project={project}
+            organizationId={organization.id}
             // gsocUrl={organization.gsoc_url}
             // ideasUrl={organization.ideas_url}
           />

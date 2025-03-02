@@ -74,9 +74,7 @@ export function ProjectCard({
         </div>
       </CardHeader>
       <CardContent className="pb-2">
-        <CardDescription className="line-clamp-3">
-          {project.summary}
-        </CardDescription>
+        <CardDescription className="">{project.summary}</CardDescription>
       </CardContent>
       <CardFooter>
         <Badge
