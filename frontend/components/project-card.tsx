@@ -38,6 +38,15 @@ export function ProjectCard({
     toggleFavorite(project.id, organizationId);
   };
 
+  const difficulty = project.difficulty.toLowerCase();
+  const variant = difficulty.includes("easy")
+    ? "easy"
+    : difficulty.includes("medium")
+    ? "medium"
+    : difficulty.includes("hard")
+    ? "hard"
+    : "varied";
+
   return (
     <Card className="h-full">
       <CardHeader className="pb-2">
@@ -77,16 +86,7 @@ export function ProjectCard({
         <CardDescription className="">{project.summary}</CardDescription>
       </CardContent>
       <CardFooter>
-        <Badge
-          variant={
-            project.difficulty === "Easy"
-              ? "success"
-              : project.difficulty === "Medium"
-              ? "warning"
-              : "destructive"
-          }
-          className="text-xs"
-        >
+        <Badge variant={variant} className="text-xs">
           {project.difficulty}
         </Badge>
       </CardFooter>
