@@ -55,7 +55,7 @@ export function VirtualGrid<T>({
             top: 0,
             left: 0,
             width: "100%",
-            transform: `translateY(${items[0]?.start ?? 0}px)`,
+            // transform: `translateY(${items[0]?.start ?? 0}px)`,
           }}
         >
           {rowVirtualizer.getVirtualItems().map((virtualRow) => {
